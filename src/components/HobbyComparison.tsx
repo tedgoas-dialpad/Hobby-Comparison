@@ -122,29 +122,13 @@ const HobbyComparison = () => {
 
         <div className="lg:sticky lg:top-4 h-fit">
           <div className="bg-white border-4 border-black nb-shadow-md p-6 nb-canvas-white">
-            <h2 className="text-2xl font-black mb-4">Comparison Chart</h2>
+            <h2 className="text-2xl font-black mb-4 text-center">Comparison</h2>
             <RadarChart
               hobbies={hobbies}
               visibleHobbies={visibleHobbies}
               onToggleVisibility={toggleHobbyVisibility}
+              calculateAverage={calculateAverage}
             />
-            <div className="mt-6 space-y-2">
-              <h3 className="text-sm font-black uppercase tracking-widest">Average Scores</h3>
-              {hobbies.map(hobby => {
-                const avg = calculateAverage(hobby);
-                return (
-                  <div key={hobby.id} className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block w-3 h-3 border-4 border-black" style={{ backgroundColor: hobby.color }} />
-                      <span>{hobby.name}</span>
-                    </div>
-                    <span className="font-black">
-                      {avg !== null ? avg.toFixed(2) : 'N/A'}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>

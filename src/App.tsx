@@ -2,15 +2,14 @@ import HobbyComparison from './components/HobbyComparison'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 nb-dots">
       <div className="max-w-7xl mx-auto">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Hobby Comparison Tool
-          </h1>
-          <p className="text-lg text-gray-600">
-            Compare up to 3 hobbies across 8 criteria and visualize results in real-time
-          </p>
+        <header className="mb-10 relative">
+          <div className="inline-block bg-white border-4 border-black nb-shadow-lg px-5 py-3 nb-sticker">
+            <h1 className="text-5xl font-black tracking-tighter">
+              Hobby Comparison
+            </h1>
+          </div>
         </header>
         <HobbyComparison />
       </div>

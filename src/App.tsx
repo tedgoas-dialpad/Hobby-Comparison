@@ -13,13 +13,13 @@ function App() {
           {/* Circle inside footer on left */}
           <div
             className="absolute -top-8 left-48 w-16 h-16 rounded-full border-4 border-black"
-            style={{ backgroundColor: '#FF6B6B' }}
+            style={{ backgroundColor: 'var(--nb-red)' }}
           ></div>
 
           {/* Square hanging off top right */}
           <div
             className="absolute -top-22 right-24 w-12 h-12 border-4 border-black rotate-12"
-            style={{ backgroundColor: '#4A90E2' }}
+            style={{ backgroundColor: 'var(--nb-blue)' }}
           ></div>
 
           {/* Star near the square */}
@@ -27,7 +27,7 @@ function App() {
             <svg width="80" height="80" viewBox="0 0 80 80">
               <polygon
                 points="40,8 46,28 66,28 50,40 56,60 40,48 24,60 30,40 14,28 34,28"
-                fill="#4CAF50"
+                fill="var(--nb-green)"
                 stroke="black"
                 strokeWidth="4"
                 strokeLinejoin="round"

@@ -22,3 +22,7 @@ export const HOBBY_COLORS = [
   '#4A90E2', // Blue
   '#4CAF50', // Green
 ] as const;
+
+export const createEmptyScores = (): Record<Criterion, number | null> => {
+  return Object.fromEntries(CRITERIA.map(c => [c, null])) as Record<Criterion, number | null>;
+};

@@ -46,13 +46,14 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
               onChange={(e) => setTempName(e.target.value)}
               onBlur={handleNameSubmit}
               onKeyDown={handleKeyDown}
-              className="text-lg font-semibold text-gray-900 border-b-2 border-blue-500 outline-none flex-1 max-w-xs"
+              className="text-2xl font-black text-gray-900 border-b-2 border-blue-500 outline-none bg-transparent p-0 m-0"
+              style={{ width: `${Math.max(tempName.length * 0.6, 8)}em` }}
               autoFocus
             />
           ) : (
             <h3
               onClick={() => setIsEditingName(true)}
-              className="text-2xl font-black cursor-pointer"
+              className="text-2xl font-black cursor-pointer hover:text-gray-700 border-b-2 border-transparent"
               title="Click to edit"
             >
               {hobby.name}
@@ -60,14 +61,6 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
           )}
         </div>
         <div className="flex items-center gap-3">
-          {average !== null && (
-            <div className="text-right">
-              <p className="text-[11px] leading-none uppercase tracking-widest">Avg</p>
-              <p className="text-lg font-black">
-                {average.toFixed(2)}
-              </p>
-            </div>
-          )}
           {canRemove && (
             <button
               onClick={() => onRemove(hobby.id)}

@@ -39,11 +39,9 @@ body {
   background-color: var(--nb-cream);
   /* dots layer */
   background-image:
-    radial-gradient(var(--nb-black) 1.25px, rgba(0,0,0,0) 1.5px),
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
-  background-size: 32px 32px, 128px 128px, 128px 128px;
-  background-position: 0 0, 0 0, 0 0;
+    radial-gradient(var(--nb-black) 1.25px, rgba(0,0,0,0) 1.5px);
+  background-size: 32px 32px;
+  background-position: 0 0;
 }
 
 /* Ensure white panels and chart canvas render solid white over dotted bg */

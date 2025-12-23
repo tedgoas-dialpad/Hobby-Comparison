@@ -34,7 +34,7 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
 
   return (
     <div 
-      className="bg-white p-6 border-4 border-black nb-shadow-md nb-sticker transition-transform w-full max-w-md"
+      className="bg-white p-6 border-4 border-black nb-shadow-md transition-transform w-full"
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3 flex-1">
@@ -82,8 +82,8 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
 
       <div className="space-y-5">
         {CRITERIA.map((criterion) => (
-          <div key={criterion} className="space-y-2">
-            <label className="text-sm font-black uppercase tracking-widest block">
+          <div key={criterion} className="flex items-center gap-4">
+            <label className="text-sm font-black uppercase tracking-widest min-w-[200px]">
               {criterion}
             </label>
             <div className="flex gap-2">

@@ -60,8 +60,7 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
 
   const options: ChartOptions<'radar'> = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1,
+    maintainAspectRatio: false,
     scales: {
       r: {
         angleLines: {
@@ -137,7 +136,7 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full h-[600px]">
       <Radar ref={chartRef} data={data} options={options} />
     </div>
   );

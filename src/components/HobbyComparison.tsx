@@ -115,23 +115,9 @@ const HobbyComparison = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-4 bg-white border-4 border-black nb-shadow-md p-4">
-          <div className="bg-white border-4 border-black nb-shadow-sm p-4 nb-sticker">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Scoring Guide</h2>
-            <p className="text-sm text-gray-600">
-              Rate each hobby on a scale of 1-5, where <strong>1 = low</strong> and <strong>5 = high</strong>
-            </p>
-          </div>
-          <div
-            className={`grid gap-6 items-start justify-items-start ${
-              hobbies.length === 1
-                ? 'grid-cols-1'
-                : hobbies.length === 2
-                ? 'grid-cols-2'
-                : 'grid-cols-3'
-            }`}
-          >
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8">
+        <div className="space-y-4">
+          <div className="flex flex-col gap-6">
             {hobbies.map(hobby => (
               <HobbyCard
                 key={hobby.id}

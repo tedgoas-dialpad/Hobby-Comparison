@@ -23,16 +23,19 @@ ChartJS.register(
 
 interface RadarChartProps {
   hobbies: Hobby[];
+  visibleHobbies: Record<string, boolean>;
+  onToggleVisibility: (id: string) => void;
+  calculateAverage: (hobby: Hobby) => number | null;
 }
 
-const RadarChart = ({ hobbies }: RadarChartProps) => {
+const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAverage }: RadarChartProps) => {
   const chartRef = useRef<ChartJS<'radar'>>(null);
 
   useEffect(() => {
     if (chartRef.current) {
       chartRef.current.update('none');
     }
-  }, [hobbies]);
+  }, [hobbies, visibleHobbies]);
 
   const data = {
     labels: CRITERIA.map(c => {
@@ -55,13 +58,13 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
       pointHoverBorderColor: hobby.color,
       pointRadius: 4,
       pointHoverRadius: 6,
+      hidden: !visibleHobbies[hobby.id],
     })),
   };
 
   const options: ChartOptions<'radar'> = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1,
+    maintainAspectRatio: false,
     scales: {
       r: {
         angleLines: {
@@ -73,8 +76,9 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
         },
         pointLabels: {
           font: {
-            size: 11,
-            family: 'system-ui, -apple-system, sans-serif',
+            size: 14,
+            family: "'Space Grotesk', system-ui, -apple-system, sans-serif",
+            weight: '400',
           },
           color: '#374151',
           padding: 10,
@@ -84,7 +88,9 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
           backdropColor: 'transparent',
           color: '#6b7280',
           font: {
-            size: 10,
+            size: 12,
+            family: "'Space Grotesk', system-ui, -apple-system, sans-serif",
+            weight: '400',
           },
         },
         suggestedMin: 0,
@@ -93,17 +99,7 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
     },
     plugins: {
       legend: {
-        position: 'top',
-        labels: {
-          padding: 15,
-          font: {
-            size: 12,
-            family: 'system-ui, -apple-system, sans-serif',
-          },
-          color: '#374151',
-          usePointStyle: true,
-          pointStyle: 'circle',
-        },
+        display: false,
       },
       tooltip: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -137,8 +133,34 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
   }
 
   return (
-    <div className="w-full">
-      <Radar ref={chartRef} data={data} options={options} />
+    <div>
+      <div className="flex flex-wrap gap-4 justify-center">
+        {hobbies.map(hobby => {
+          const avg = calculateAverage(hobby);
+          const isVisible = visibleHobbies[hobby.id];
+          return (
+            <button
+              key={hobby.id}
+              onClick={() => onToggleVisibility(hobby.id)}
+              className={`flex items-center gap-2 text-base p-2 rounded hover:bg-gray-50 transition-colors cursor-pointer ${
+                !isVisible ? 'opacity-50' : ''
+              }`}
+            >
+              <span
+                className="inline-block w-4 h-4 border-4 border-black"
+                style={{ backgroundColor: hobby.color }}
+              />
+              <span className={!isVisible ? 'line-through' : ''}>{hobby.name}</span>
+              <span className="font-black ml-1">
+                {avg !== null ? avg.toFixed(2) : 'N/A'}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="w-full h-[600px]">
+        <Radar ref={chartRef} data={data} options={options} />
+      </div>
     </div>
   );
 };

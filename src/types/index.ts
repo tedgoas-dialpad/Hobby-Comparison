@@ -1,12 +1,11 @@
 export const CRITERIA = [
   'Fits into my schedule',
   'Happens often',
-  'Can involve the kids',
+  'Involves the kids',
   'Is cheap',
   'Gives me meaning',
-  'Gives me emotional energy',
-  'Has a positive or tangible result',
-  'Can scale up or down based on time or energy'
+  'Gives me energy',
+  'Has positive result'
 ] as const;
 
 export type Criterion = typeof CRITERIA[number];
@@ -20,6 +19,6 @@ export interface Hobby {
 
 export const HOBBY_COLORS = [
   '#FF6B6B', // Hot Red
-  '#FFD93D', // Vivid Yellow
-  '#C4B5FD', // Soft Violet
+  '#4A90E2', // Blue
+  '#4CAF50', // Green
 ] as const;

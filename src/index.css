@@ -49,3 +49,31 @@ body {
 .nb-canvas-white canvas { background: #fff !important; }
 .nb-panel { background: #fff; }
 
+/* Star badge decoration */
+.nb-star-badge {
+  width: 36px;
+  height: 36px;
+  background: var(--nb-yellow);
+  border: 4px solid var(--nb-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotate-counterclockwise 10s linear infinite;
+}
+
+.nb-star-badge::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: var(--nb-black);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+@keyframes rotate-counterclockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

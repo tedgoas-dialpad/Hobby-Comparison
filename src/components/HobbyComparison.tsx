@@ -80,7 +80,8 @@ const HobbyComparison = () => {
   return (
     <div className="space-y-6">
       <header className="flex justify-between items-end gap-4 mb-6">
-        <div className="inline-block bg-white border-4 border-black nb-shadow-lg px-5 py-3 nb-sticker relative -top-2">
+        <div className="inline-block bg-white border-4 border-black nb-shadow-md px-5 py-3 nb-sticker relative -top-2">
+          <div className="nb-star-badge absolute -top-6 -right-6 z-10"></div>
           <h1 className="text-5xl font-black tracking-tighter">
             Ted Needs a New Hobby
           </h1>
@@ -89,14 +90,14 @@ const HobbyComparison = () => {
           {hobbies.length < 3 && (
             <button
               onClick={addHobby}
-              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
+              className="px-4 py-2 bg-white border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
             >
               + Add Hobby
             </button>
           )}
           <button
             onClick={resetScores}
-            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
+            className="px-4 py-2 bg-white border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
           >
             Reset Scores
           </button>

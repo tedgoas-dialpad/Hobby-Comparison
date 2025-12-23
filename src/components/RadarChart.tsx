@@ -23,16 +23,18 @@ ChartJS.register(
 
 interface RadarChartProps {
   hobbies: Hobby[];
+  visibleHobbies: Record<string, boolean>;
+  onToggleVisibility: (id: string) => void;
 }
 
-const RadarChart = ({ hobbies }: RadarChartProps) => {
+const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility }: RadarChartProps) => {
   const chartRef = useRef<ChartJS<'radar'>>(null);
 
   useEffect(() => {
     if (chartRef.current) {
       chartRef.current.update('none');
     }
-  }, [hobbies]);
+  }, [hobbies, visibleHobbies]);
 
   const data = {
     labels: CRITERIA.map(c => {
@@ -55,6 +57,7 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
       pointHoverBorderColor: hobby.color,
       pointRadius: 4,
       pointHoverRadius: 6,
+      hidden: !visibleHobbies[hobby.id],
     })),
   };
 
@@ -102,6 +105,25 @@ const RadarChart = ({ hobbies }: RadarChartProps) => {
           color: '#374151',
           usePointStyle: true,
           pointStyle: 'circle',
+        },
+        onClick: (_e, legendItem, legend) => {
+          const index = legendItem.datasetIndex;
+          if (index !== undefined) {
+            const hobby = hobbies[index];
+            if (hobby) {
+              onToggleVisibility(hobby.id);
+            }
+          }
+        },
+        onHover: (event) => {
+          if (event.native?.target) {
+            (event.native.target as HTMLElement).style.cursor = 'pointer';
+          }
+        },
+        onLeave: (event) => {
+          if (event.native?.target) {
+            (event.native.target as HTMLElement).style.cursor = 'default';
+          }
         },
       },
       tooltip: {

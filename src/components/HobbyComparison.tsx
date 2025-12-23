@@ -79,40 +79,21 @@ const HobbyComparison = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="flex flex-wrap gap-3">
-          {hobbies.map(hobby => (
-            <button
-              key={hobby.id}
-              onClick={() => toggleHobbyVisibility(hobby.id)}
-              className={`px-4 py-2 border-4 border-black nb-shadow-sm nb-press text-sm font-black tracking-widest uppercase ${
-                visibleHobbies[hobby.id] ? '' : ''
-              }`}
-              style={{
-                backgroundColor: visibleHobbies[hobby.id] ? hobby.color : '#ffffff',
-                color: '#000000'
-              }}
-            >
-              {hobby.name}
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-3">
-          {hobbies.length < 3 && (
-            <button
-              onClick={addHobby}
-              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
-            >
-              + Add Hobby
-            </button>
-          )}
+      <div className="flex justify-end gap-3">
+        {hobbies.length < 3 && (
           <button
-            onClick={resetScores}
-            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+            onClick={addHobby}
+            className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
           >
-            Reset Scores
+            + Add Hobby
           </button>
-        </div>
+        )}
+        <button
+          onClick={resetScores}
+          className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+        >
+          Reset Scores
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8">
@@ -135,8 +116,10 @@ const HobbyComparison = () => {
         <div className="lg:sticky lg:top-4 h-fit">
           <div className="bg-white border-4 border-black nb-shadow-md p-6 nb-canvas-white">
             <h2 className="text-2xl font-black mb-4">Comparison Chart</h2>
-            <RadarChart 
-              hobbies={hobbies.filter(h => visibleHobbies[h.id])} 
+            <RadarChart
+              hobbies={hobbies}
+              visibleHobbies={visibleHobbies}
+              onToggleVisibility={toggleHobbyVisibility}
             />
             <div className="mt-6 space-y-2">
               <h3 className="text-sm font-black uppercase tracking-widest">Average Scores</h3>

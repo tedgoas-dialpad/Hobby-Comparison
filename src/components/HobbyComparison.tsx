@@ -79,22 +79,29 @@ const HobbyComparison = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-end gap-3">
-        {hobbies.length < 3 && (
+      <header className="flex justify-between items-end gap-4 mb-6">
+        <div className="inline-block bg-white border-4 border-black nb-shadow-lg px-5 py-3 nb-sticker relative -top-2">
+          <h1 className="text-5xl font-black tracking-tighter">
+            Ted Needs a New Hobby
+          </h1>
+        </div>
+        <div className="flex gap-3">
+          {hobbies.length < 3 && (
+            <button
+              onClick={addHobby}
+              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+            >
+              + Add Hobby
+            </button>
+          )}
           <button
-            onClick={addHobby}
-            className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+            onClick={resetScores}
+            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
           >
-            + Add Hobby
+            Reset Scores
           </button>
-        )}
-        <button
-          onClick={resetScores}
-          className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
-        >
-          Reset Scores
-        </button>
-      </div>
+        </div>
+      </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8">
         <div className="space-y-4">

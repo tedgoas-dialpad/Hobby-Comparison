@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { type Hobby, CRITERIA, HOBBY_COLORS } from '../types';
+import { type Hobby, CRITERIA, HOBBY_COLORS, createEmptyScores } from '../types';
 import HobbyCard from './HobbyCard';
 import RadarChart from './RadarChart';
 
@@ -8,13 +8,13 @@ const HobbyComparison = () => {
     {
       id: '1',
       name: 'Hobby 1',
-      scores: Object.fromEntries(CRITERIA.map(c => [c, null])) as Record<typeof CRITERIA[number], number | null>,
+      scores: createEmptyScores(),
       color: HOBBY_COLORS[0]
     },
     {
       id: '2',
       name: 'Hobby 2',
-      scores: Object.fromEntries(CRITERIA.map(c => [c, null])) as Record<typeof CRITERIA[number], number | null>,
+      scores: createEmptyScores(),
       color: HOBBY_COLORS[1]
     }
   ]);
@@ -41,7 +41,7 @@ const HobbyComparison = () => {
       const newHobby: Hobby = {
         id: '3',
         name: 'Hobby 3',
-        scores: Object.fromEntries(CRITERIA.map(c => [c, null])) as Record<typeof CRITERIA[number], number | null>,
+        scores: createEmptyScores(),
         color: HOBBY_COLORS[2]
       };
       setHobbies(prev => [...prev, newHobby]);
@@ -67,7 +67,7 @@ const HobbyComparison = () => {
   const resetScores = () => {
     setHobbies(prev => prev.map(h => ({
       ...h,
-      scores: Object.fromEntries(CRITERIA.map(c => [c, null])) as Record<typeof CRITERIA[number], number | null>
+      scores: createEmptyScores()
     })));
   };
 

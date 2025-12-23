@@ -34,15 +34,11 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
 
   return (
     <div 
-      className="bg-white rounded-lg p-6 shadow-sm border-2 transition-all"
-      style={{ borderColor: hobby.color }}
+      className="bg-white p-6 border-4 border-black nb-shadow-md nb-sticker transition-transform w-full max-w-md"
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3 flex-1">
-          <div 
-            className="w-4 h-4 rounded-full"
-            style={{ backgroundColor: hobby.color }}
-          />
+          <span className="inline-block w-4 h-4 border-4 border-black" style={{ backgroundColor: hobby.color }} />
           {isEditingName ? (
             <input
               type="text"
@@ -50,13 +46,13 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
               onChange={(e) => setTempName(e.target.value)}
               onBlur={handleNameSubmit}
               onKeyDown={handleKeyDown}
-              className="text-xl font-semibold text-gray-900 border-b-2 border-blue-500 outline-none flex-1 max-w-xs"
+              className="text-lg font-semibold text-gray-900 border-b-2 border-blue-500 outline-none flex-1 max-w-xs"
               autoFocus
             />
           ) : (
             <h3
               onClick={() => setIsEditingName(true)}
-              className="text-xl font-semibold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors"
+              className="text-2xl font-black cursor-pointer"
               title="Click to edit"
             >
               {hobby.name}
@@ -66,8 +62,8 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
         <div className="flex items-center gap-3">
           {average !== null && (
             <div className="text-right">
-              <p className="text-xs text-gray-500">Average</p>
-              <p className="text-lg font-bold" style={{ color: hobby.color }}>
+              <p className="text-[11px] leading-none uppercase tracking-widest">Avg</p>
+              <p className="text-lg font-black">
                 {average.toFixed(2)}
               </p>
             </div>
@@ -75,21 +71,19 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
           {canRemove && (
             <button
               onClick={() => onRemove(hobby.id)}
-              className="text-red-500 hover:text-red-700 transition-colors p-1"
+              className="nb-press border-4 border-black nb-shadow-sm px-2 py-1 bg-[var(--nb-red)] text-black font-black"
               title="Remove hobby"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              Remove
             </button>
           )}
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {CRITERIA.map((criterion) => (
           <div key={criterion} className="space-y-2">
-            <label className="text-sm font-medium text-gray-700 block">
+            <label className="text-sm font-black uppercase tracking-widest block">
               {criterion}
             </label>
             <div className="flex gap-2">
@@ -97,10 +91,10 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
                 <button
                   key={score}
                   onClick={() => onUpdateScore(hobby.id, criterion, score)}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-black transition-all border-4 border-black nb-shadow-sm nb-press ${
                     hobby.scores[criterion] === score
-                      ? 'text-white shadow-md scale-105'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? ''
+                      : 'bg-white'
                   }`}
                   style={{
                     backgroundColor: hobby.scores[criterion] === score ? hobby.color : undefined,

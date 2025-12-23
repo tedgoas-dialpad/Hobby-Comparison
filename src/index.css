@@ -1,22 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light;
-  color: #213547;
-  background-color: #f9fafb;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --nb-cream: #FFFDF5;
+  --nb-black: #000000;
+  --nb-red: #FF6B6B; /* Hot Red */
+  --nb-yellow: #FFD93D; /* Vivid Yellow */
+  --nb-violet: #C4B5FD; /* Soft Violet */
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--nb-cream);
+  color: var(--nb-black);
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
+
+/* Neo-brutalist utilities */
+.nb-shadow-sm { box-shadow: 4px 4px 0 0 var(--nb-black); }
+.nb-shadow-md { box-shadow: 8px 8px 0 0 var(--nb-black); }
+.nb-shadow-lg { box-shadow: 12px 12px 0 0 var(--nb-black); }
+.nb-shadow-xl { box-shadow: 16px 16px 0 0 var(--nb-black); }
+
+.nb-sticker { transform: rotate(-1.5deg); }
+.nb-sticker-2 { transform: rotate(1.25deg); }
+
+.nb-outline { -webkit-text-stroke: 2px var(--nb-black); color: transparent; }
+
+/* Mechanical press interaction */
+.nb-press { transition: transform 120ms ease, box-shadow 120ms ease; }
+.nb-press:active { transform: translate(4px, 4px); box-shadow: none !important; }
+
+/* Dotted grid background */
+.nb-dots {
+  /* base cream */
+  background-color: var(--nb-cream);
+  /* dots layer */
+  background-image:
+    radial-gradient(var(--nb-black) 1.25px, rgba(0,0,0,0) 1.5px),
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 32px 32px, 128px 128px, 128px 128px;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+/* Ensure white panels and chart canvas render solid white over dotted bg */
+.nb-canvas-white { background: #fff; }
+.nb-canvas-white canvas { background: #fff !important; }
+.nb-panel { background: #fff; }
+

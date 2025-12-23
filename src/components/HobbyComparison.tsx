@@ -80,37 +80,35 @@ const HobbyComparison = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {hobbies.map(hobby => (
             <button
               key={hobby.id}
               onClick={() => toggleHobbyVisibility(hobby.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                visibleHobbies[hobby.id]
-                  ? 'opacity-100'
-                  : 'opacity-50'
+              className={`px-4 py-2 border-4 border-black nb-shadow-sm nb-press text-sm font-black tracking-widest uppercase ${
+                visibleHobbies[hobby.id] ? '' : ''
               }`}
               style={{
-                backgroundColor: visibleHobbies[hobby.id] ? hobby.color : '#e5e7eb',
-                color: visibleHobbies[hobby.id] ? 'white' : '#6b7280'
+                backgroundColor: visibleHobbies[hobby.id] ? hobby.color : '#ffffff',
+                color: '#000000'
               }}
             >
               {hobby.name}
             </button>
           ))}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           {hobbies.length < 3 && (
             <button
               onClick={addHobby}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
             >
               + Add Hobby
             </button>
           )}
           <button
             onClick={resetScores}
-            className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
+            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
           >
             Reset Scores
           </button>
@@ -118,46 +116,53 @@ const HobbyComparison = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-4">
-          <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+        <div className="space-y-4 bg-white border-4 border-black nb-shadow-md p-4">
+          <div className="bg-white border-4 border-black nb-shadow-sm p-4 nb-sticker">
             <h2 className="text-lg font-semibold text-gray-900 mb-2">Scoring Guide</h2>
             <p className="text-sm text-gray-600">
               Rate each hobby on a scale of 1-5, where <strong>1 = low</strong> and <strong>5 = high</strong>
             </p>
           </div>
-          {hobbies.map(hobby => (
-            <HobbyCard
-              key={hobby.id}
-              hobby={hobby}
-              onUpdateName={updateHobbyName}
-              onUpdateScore={updateScore}
-              onRemove={removeHobby}
-              canRemove={hobbies.length > 2}
-              average={calculateAverage(hobby)}
-            />
-          ))}
+          <div
+            className={`grid gap-6 items-start justify-items-start ${
+              hobbies.length === 1
+                ? 'grid-cols-1'
+                : hobbies.length === 2
+                ? 'grid-cols-2'
+                : 'grid-cols-3'
+            }`}
+          >
+            {hobbies.map(hobby => (
+              <HobbyCard
+                key={hobby.id}
+                hobby={hobby}
+                onUpdateName={updateHobbyName}
+                onUpdateScore={updateScore}
+                onRemove={removeHobby}
+                canRemove={hobbies.length > 2}
+                average={calculateAverage(hobby)}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="lg:sticky lg:top-4 h-fit">
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Comparison Chart</h2>
+          <div className="bg-white border-4 border-black nb-shadow-md p-6 nb-canvas-white">
+            <h2 className="text-2xl font-black mb-4">Comparison Chart</h2>
             <RadarChart 
               hobbies={hobbies.filter(h => visibleHobbies[h.id])} 
             />
             <div className="mt-6 space-y-2">
-              <h3 className="text-sm font-semibold text-gray-700">Average Scores</h3>
+              <h3 className="text-sm font-black uppercase tracking-widest">Average Scores</h3>
               {hobbies.map(hobby => {
                 const avg = calculateAverage(hobby);
                 return (
                   <div key={hobby.id} className="flex items-center justify-between text-sm">
                     <div className="flex items-center gap-2">
-                      <div 
-                        className="w-4 h-4 rounded"
-                        style={{ backgroundColor: hobby.color }}
-                      />
-                      <span className="text-gray-700">{hobby.name}</span>
+                      <span className="inline-block w-3 h-3 border-4 border-black" style={{ backgroundColor: hobby.color }} />
+                      <span>{hobby.name}</span>
                     </div>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-black">
                       {avg !== null ? avg.toFixed(2) : 'N/A'}
                     </span>
                   </div>

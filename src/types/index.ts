@@ -1,12 +1,11 @@
 export const CRITERIA = [
   'Fits into my schedule',
   'Happens often',
-  'Can involve the kids',
+  'Involves the kids',
   'Is cheap',
   'Gives me meaning',
-  'Gives me emotional energy',
-  'Has a positive or tangible result',
-  'Can scale up or down based on time or energy'
+  'Gives me energy',
+  'Has positive result'
 ] as const;
 
 export type Criterion = typeof CRITERIA[number];

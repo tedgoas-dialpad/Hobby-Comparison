@@ -89,14 +89,14 @@ const HobbyComparison = () => {
           {hobbies.length < 3 && (
             <button
               onClick={addHobby}
-              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+              className="px-4 py-2 bg-[var(--nb-red)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
             >
               + Add Hobby
             </button>
           )}
           <button
             onClick={resetScores}
-            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest"
+            className="px-4 py-2 bg-[var(--nb-violet)] border-4 border-black nb-shadow-sm nb-press text-sm font-black uppercase tracking-widest cursor-pointer"
           >
             Reset Scores
           </button>

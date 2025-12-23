@@ -19,6 +19,6 @@ export interface Hobby {
 
 export const HOBBY_COLORS = [
   '#FF6B6B', // Hot Red
-  '#FFD93D', // Vivid Yellow
-  '#C4B5FD', // Soft Violet
+  '#4A90E2', // Blue
+  '#4CAF50', // Green
 ] as const;

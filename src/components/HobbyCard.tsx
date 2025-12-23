@@ -64,7 +64,7 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
           {canRemove && (
             <button
               onClick={() => onRemove(hobby.id)}
-              className="nb-press border-4 border-black nb-shadow-sm px-2 py-1 bg-[var(--nb-red)] text-black font-black"
+              className="text-sm text-gray-500 hover:text-red-600 transition-colors cursor-pointer"
               title="Remove hobby"
             >
               Remove
@@ -84,7 +84,7 @@ const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, av
                 <button
                   key={score}
                   onClick={() => onUpdateScore(hobby.id, criterion, score)}
-                  className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-black transition-all border-4 border-black nb-shadow-sm nb-press ${
+                  className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-black transition-all border-4 border-black nb-shadow-sm nb-press cursor-pointer ${
                     hobby.scores[criterion] === score
                       ? ''
                       : 'bg-white'

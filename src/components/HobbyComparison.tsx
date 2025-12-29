@@ -104,7 +104,7 @@ const HobbyComparison = () => {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)] gap-8">
         <div className="space-y-4">
           <div className="flex flex-col gap-6">
             {hobbies.map(hobby => (

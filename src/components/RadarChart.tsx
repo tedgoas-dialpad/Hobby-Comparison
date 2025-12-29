@@ -37,6 +37,17 @@ const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAver
     }
   }, [hobbies, visibleHobbies]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (chartRef.current) {
+        chartRef.current.resize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const data = {
     labels: CRITERIA.map(c => {
       if (c.length > 35) {
@@ -64,7 +75,8 @@ const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAver
 
   const options: ChartOptions<'radar'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+    aspectRatio: 1,
     scales: {
       r: {
         angleLines: {
@@ -158,7 +170,7 @@ const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAver
           );
         })}
       </div>
-      <div className="w-full h-[600px]">
+      <div className="w-full">
         <Radar ref={chartRef} data={data} options={options} />
       </div>
     </div>

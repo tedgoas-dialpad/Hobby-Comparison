@@ -18,7 +18,7 @@ function App() {
 
           {/* Square hanging off top right */}
           <div
-            className="absolute -top-22 right-24 w-12 h-12 border-4 border-black rotate-12"
+            className="absolute -top-22 right-24 w-12 h-12 border-4 border-black rotate-12 rounded"
             style={{ backgroundColor: 'var(--nb-blue)' }}
           ></div>
 

@@ -78,7 +78,7 @@ const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAver
           font: {
             size: 14,
             family: "'Space Grotesk', system-ui, -apple-system, sans-serif",
-            weight: '400',
+            weight: 400,
           },
           color: '#374151',
           padding: 10,
@@ -90,7 +90,7 @@ const RadarChart = ({ hobbies, visibleHobbies, onToggleVisibility, calculateAver
           font: {
             size: 12,
             family: "'Space Grotesk', system-ui, -apple-system, sans-serif",
-            weight: '400',
+            weight: 400,
           },
         },
         suggestedMin: 0,

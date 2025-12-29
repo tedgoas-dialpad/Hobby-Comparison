@@ -10,7 +10,7 @@ interface HobbyCardProps {
   average: number | null;
 }
 
-const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove, average }: HobbyCardProps) => {
+const HobbyCard = ({ hobby, onUpdateName, onUpdateScore, onRemove, canRemove }: HobbyCardProps) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [tempName, setTempName] = useState(hobby.name);
 
